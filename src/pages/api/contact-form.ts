@@ -30,8 +30,8 @@ export const POST: APIRoute = async (context) => {
             port: 587,
             secure: false,
             auth: {
-                user: import.meta.env.MAIL_USER, // generated ethereal user
-                pass: import.meta.env.MAIL_PASSWORD, // generated ethereal password
+                user: import.meta.env.MAIL_USER ?? process.env.MAIL_USER, // generated ethereal user
+                pass: import.meta.env.MAIL_PASSWORD ?? process.env.MAIL_PASSWORD, // generated ethereal password
             },
         });
 
