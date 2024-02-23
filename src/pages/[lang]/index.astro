@@ -11,6 +11,7 @@ import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const sitekey = import.meta.env.PUBLIC_CAPTCHA_SITE_KEY ?? process.env.PUBLIC_CAPTCHA_SITE_KEY;
 
 ---
 
@@ -39,7 +40,7 @@ const t = useTranslations(lang);
 				</div>
 			</div>
 			<hr class="border-1 w-full border-gray-300 " />
-			<Contacto client:load="vue" url={Astro.url}/>
+			<Contacto client:load="vue" url={Astro.url.toString()} sitekey={sitekey}/>
 		</main>
 	</div>
 	<script>

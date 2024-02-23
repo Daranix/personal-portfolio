@@ -8,7 +8,12 @@ type DeepLeafKeys<T, Prefix extends string = ''> = T extends object
 : Prefix;
 
 
-export function getLangFromUrl(url: URL) {
+export function getLangFromUrl(url: URL | string) {
+
+  if(typeof url === 'string') {
+    url = new URL(url);
+  }
+  
   const [, lang] = url.pathname.split('/');
   if (lang in ui) return lang as keyof typeof ui;
   return defaultLang;

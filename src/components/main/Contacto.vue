@@ -14,10 +14,19 @@ const { toast } = useToast()
 
 const formSchema = toTypedSchema(ContactFormRequestSchema as any);
 
-const props = defineProps(['url']);
+const props = defineProps({
+    url: {
+        required: true,
+        type: String
+    },
+    sitekey: {
+        required: true,
+        type: String
+    }
+});
 const lang = getLangFromUrl(props.url);
 const t = useTranslations(lang);
-const sitekey = import.meta.env.PUBLIC_CAPTCHA_SITE_KEY ?? process.env.PUBLIC_CAPTCHA_SITE_KEY;
+const sitekey = props.sitekey;
 
 const verified = ref(false);
 const expired = ref(false);
