@@ -1,0 +1,19 @@
+---
+import { defaultLang, languages } from "@/i18n/ui";
+
+console.log(Astro.preferredLocaleList)
+
+
+let selectedLocale = defaultLang;
+
+for (const locale of Astro.preferredLocaleList || ['en']) {
+    console.log(locale);
+    if(languages.includes(locale as any)) {
+        selectedLocale = locale;
+        break;
+    }
+}
+
+
+return Astro.redirect(`/${selectedLocale}`);
+---

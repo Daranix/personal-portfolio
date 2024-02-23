@@ -1,0 +1,114 @@
+---
+import { Icon } from "astro-icon/components";
+import { format } from "date-fns";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import * as dateLocales from 'date-fns/locale'
+
+interface Experience {
+    companyName: string;
+    position: string;
+    start: string | Date;
+    logo: string;
+    background: string;
+    website: string;
+    end?: string | Date;
+}
+
+
+type DateLocales = keyof typeof dateLocales;
+
+const lang = getLangFromUrl(Astro.url);
+const formatLocale = dateLocales[lang as DateLocales];
+const t = useTranslations(lang);
+
+const experience: Experience[] = [
+    {
+        companyName: "Panel",
+        position: "Front-End Developer",
+        start: '04-01-2018',
+        end: '10-01-2019',
+        background: "/img/backgrounds/companies/panel.webp",
+        logo: "/img/logos/companies/panel.webp",
+        website: "https://panel.es",
+    },
+    {
+        companyName: "Keifi",
+        position: "Full-Stack Developer",
+        start: '10-01-2019',
+        end: '04-01-2023',
+        background: "/img/backgrounds/companies/keifi.webp",
+        logo: "/img/logos/companies/keifi.svg",
+        website: "https://keifi.com",
+    },
+    {
+        companyName: "Enel X",
+        position: "Software Engineer",
+        start: '04-01-2023',
+        end: '06-01-2023',
+        background: "/img/backgrounds/companies/enelx.webp",
+        logo: "/img/logos/companies/enelx.svg",
+        website: "https://www.enelx.com/",
+    },
+    {
+        companyName: "Izertis",
+        position: "Full-Stack Developer",
+        start: '09-01-2023',
+        background: "/img/backgrounds/companies/izertis.webp",
+        logo: "/img/logos/companies/izertis.webp",
+        website: "https://www.izertis.com/",
+    }
+];
+---
+
+<section class="w-full fade-in-section">
+    <div class="w-full flex flex-col gap-2 text-center mb-4">
+        <h1 class="text-3xl font-semibold">
+          {t('experience.title')}
+        </h1><p class="opacity-70">
+          {t('experience.description')}
+        </p>
+    </div>
+    <div class="grid auto-rows-[260px] grid-cols-8 gap-4">
+        {
+            experience.map((e) => {
+                return (
+                    <div class="group row-span-1 col-span-8 lg:row-span-2 lg:col-span-2 bg-black text-white rounded-3xl overflow-hidden relative flex flex-col py-14 items-center justify-between">
+                        <div class="flex flex-col items-center z-[2]">
+                        
+                                <img
+                                    class="w-40 h-10 object-contain z-[2]"
+                                    src={e.logo}
+                                    alt={e.companyName + 'logo'}
+                                    loading="lazy"
+                                />
+                                <p class="text-center leading-5 mt-2 z-[2] font-medium">
+                                    {e.position}
+                                    <br />
+                                    {format(e.start, 'MMM yyyy', { locale: formatLocale })} — {e.end ? format(e.end, 'MMM yyyy', { locale: formatLocale }) : t('experience.present')}
+                                </p>
+                            
+                        </div>
+                        <>
+                            <a
+                                class="py-2 px-4 bg-blue-500 text-white font-medium rounded-lg flex items-center gap-2 z-[2]"
+                                href={e.website}
+                                target="_blank"
+                                title={e.companyName + ' web'}
+                            >
+                                <span>{t('experience.link_text') + ' ' + e.companyName}</span>
+                                <Icon name="link" />
+                            </a>
+                            <div class="absolute w-full h-full left-0 top-0 bg-gradient-to-b from-gray-950 bg-opacity-25  to-[60%] to-transparent z-[1]"></div>
+                            <img loading="lazy"
+                                class="w-full h-full object-cover absolute left-0 top-0 z-0 dark:opacity-60 transition-all duration-300 group-hover:scale-125"
+                                src={e.background}
+                                alt={e.companyName + '_background'}
+                            />
+                        </>
+                    </div>
+                );
+            })
+        }
+    </div>
+    
+</section>

@@ -1,0 +1,99 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const techList = [
+  { title: "HTML5", image: "/img/html5.svg" },
+  { title: "CSS3", image: "/img/css3.svg" },
+  { title: "JavaScript", image: "/img/js.svg" },
+  { title: "Angular", image: "/img/angular.svg" },
+  { title: "MongoDB", image: "/img/mongodb.svg" },
+  { title: "MySQL", image: "/img/mysql.svg" },
+  { title: "TypeScript", image: "/img/typescript.svg" },
+  { title: "Tailwind", image: "/img/tailwind.svg" },
+  { title: "Node.js", image: "/img/node.svg" },
+  { title: "Sass", image: "/img/sass.svg" },
+  { title: "Java", image: "/img/java.svg" },
+];
+---
+
+<section class="w-full max-w-5xl xl:max-w-7xl text-base fade-in-section">
+  <div class="w-full flex flex-col gap-2 text-center mb-4">
+    <h1 class="text-3xl font-semibold" style="opacity: 1; transform: none;">
+      {t('technologies.title')}
+    </h1><p class="opacity-70" style="opacity: 1; transform: none;">
+      {t('technologies.description')}
+    </p>
+  </div>
+  <div class="h-40">
+    <div
+      class="w-full h-full relative inline-flex flex-nowrap bg-white dark:bg-gray-800 rounded-3xl items-center justify-between px-10 overflow-hidden"
+    >
+      <div
+        class="absolute left-0 w-28 h-full bg-gradient-to-r from-white to-transparent dark:from-gray-800 dark:to-transparent z-[1]"
+      >
+      </div>
+      <div
+        class="absolute right-0 w-28 h-full bg-gradient-to-l from-white to-transparent dark:from-gray-800 dark:to-transparent z-[1]"
+      >
+      </div>
+      <div
+        class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+      >
+        <ul
+          class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+        >
+          {
+            techList.map((t) => {
+              return (
+                <li class="mx-8">
+                  <img
+                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 undefined"
+                    src={t.image}
+                    alt={t.title}
+                    title={t.title}
+                  />
+                </li>
+              );
+            })
+          }
+        </ul>
+        <ul
+          class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+        >
+          {
+            techList.map((t) => {
+              return (
+                <li class="mx-8">
+                  <img
+                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 undefined"
+                    src={t.image}
+                    alt={t.title}
+                    title={t.title}
+                  />
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes infinite-scroll {
+    0% {
+      transform: translate(0);
+    }
+
+    100% {
+      transform: translate(-100%);
+    }
+  }
+  .animate-infinite-scroll {
+    animation: infinite-scroll 25s linear infinite;
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import { getLangFromUrl } from "@/i18n/utils";
+import "@/styles/globals.scss";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const theme = Astro.cookies.get("theme")?.value;
+---
+
+<!doctype html>
+<html lang={lang} class={theme}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta charset="utf-8" />
+		<link
+			rel="preload"
+			as="script"
+			href="https://analytics.mpesteban.dev/js/script.js"
+		/><meta
+			name="description"
+			content="Bienvenido al portfolio personal de Esteban Mayoral"
+		/><link rel="author" href="https://mpesteban.dev" /><meta
+			name="author"
+			content="Esteban Mayoral Poncelas"
+		/><link rel="manifest" href="/icon/site.webmanifest" /><meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/><meta
+			property="og:image"
+			content="https://mpesteban.dev/icon/logo.png"
+		/><meta name="twitter:card" content="summary_large_image" /><meta
+			name="twitter:creator"
+			content="@Daranix"
+		/><meta
+			name="twitter:image"
+			content="https://mpesteban.dev/icon/logo_twitter_large.png"
+		/><link rel="apple-touch-icon" href="/icon/apple-touch-icon.png" /><link
+			rel="icon"
+			href="/icon/favicon-32x32.png"
+			type="image/png"
+			sizes="32x32"
+		/><link
+			rel="icon"
+			href="/icon/favicon-16x16.png"
+			type="image/png"
+			sizes="16x16"
+		/><link
+			rel="mask-icon"
+			href="/icon/safari-pinned-tab.svg"
+			type="/icon/safari-pinned-tab.svg"
+		/>
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-100 dark:bg-slate-950">
+		<slot />
+	</body>
+</html>

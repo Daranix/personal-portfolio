@@ -1,0 +1,82 @@
+---
+import * as querystring from "querystring";
+import type { PostResponse } from "../../models/posts";
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const langSlugPrefix = lang === 'en' ? '' : `/${lang}`;
+const t = useTranslations(lang);
+
+const BASE_URL = import.meta.env.BLOG_URL;
+const CMS_BASE_URL = `${BASE_URL}/cms`
+const API_BASE_URL = `${CMS_BASE_URL}/api/posts`;
+const params = {
+    sort: "desc",
+    publicationState: "live",
+    populate: ["tags", "thumbnail"],
+    fields: [
+        "thumbnail",
+        "author",
+        "tags",
+        "title",
+        "slug",
+        "thumbnail_bg_color",
+        "publishedAt",
+        "description",
+        "locale",
+        "uuid",
+    ],
+    locale: lang,
+    "pagination[page]": 1,
+    "pagination[pageSize]": 3,
+};
+
+const url = `${API_BASE_URL}?${querystring.stringify(params)}`;
+const posts = (await fetch(url).then((r) => r.json())) as PostResponse;
+---
+
+<section>
+    <div class="w-full flex flex-col gap-2 text-center mb-4 fade-in-section">
+        <h2 class="text-3xl font-semibold">{t('articles.title')}</h2>
+        <p class="opacity-70">{t('articles.description')}</p>
+    </div>
+    <div class="flex flex-col gap-3 fade-in-section">
+        {
+            posts.data.map((p) => {
+                return (
+                    <div class="w-full h-full flex bg-white dark:bg-gray-800 rounded-3xl overflow-hidden items-stretch justify-stretch">
+                        <div class="bg-black flex items-center max-w-[30%]" style={"background-color: " + p.attributes.thumbnail_bg_color}>
+                            <img
+                                src={CMS_BASE_URL + p.attributes.thumbnail.data.attributes.url}
+                                class="w-full align-middle self-center inline-block"
+                                alt={p.attributes.title}
+                            />
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-center text-2xl">
+                                {p.attributes.title}
+                            </h3>
+                            <hr class="mt-4 mb-4" />
+                            <p class="text-center">
+                                {p.attributes.description}
+                            </p>
+
+                            <div class="flex items-center justify-center mt-3">
+                                <a
+                                    class="py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg flex items-center gap-2 z-[2] w-auto"
+                                    href={BASE_URL + langSlugPrefix + '/post/'  +p.attributes.slug}
+                                    target="_blank"
+                                    title={p.attributes.title}
+                                >
+                                    <span>Leer Articulo</span>
+                                    <Icon name="link" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })
+        }
+    </div>
+</section>

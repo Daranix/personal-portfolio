@@ -1,0 +1,58 @@
+---
+import Articulos from "@/components/main/Articulos.astro";
+import Cabecera from "@/components/main/Cabecera.astro";
+import Contacto from "@/components/main/Contacto.vue";
+import Experiencia from "@/components/main/Experiencia.astro";
+import Navbar from "@/components/main/Navbar.astro";
+import Tecnologias from "@/components/main/Tecnologias.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+
+<Layout title={t('home.title')}>
+	<Navbar />
+	<div
+		class="w-full text-midnight flex flex-col items-center subpixel-antialiased dark:text-noon scroll-smooth gap-5 lg:gap-10 mb-10"
+	>
+		<main
+			class="w-full flex flex-col gap-10 items-center max-w-5xl px-5 xl:max-w-7xl mt-[5.5rem]"
+		>
+			<Cabecera />
+			<hr class="border-1 w-full border-gray-300 " />
+			<Tecnologias />
+			<hr class="border-1 w-full border-gray-300 " />
+			<Experiencia />
+			<hr class="border-1 w-full border-gray-300 " />
+			<div class="grid grid-flow-col gap-4 w-full">
+				<!--
+				<div class="row-auto">
+					<Proyectos />
+				</div>
+				 -->
+				<div>
+					<Articulos />
+				</div>
+			</div>
+			<hr class="border-1 w-full border-gray-300 " />
+			<Contacto client:load="vue" url={Astro.url}/>
+		</main>
+	</div>
+	<script>
+		const fadeInSections = document.querySelectorAll('.fade-in-section');
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((element) => {
+				if(element.isIntersecting) {
+					element.target.classList.add('fade-section-show')
+				}
+			});
+		});
+
+		fadeInSections.forEach((element) => observer.observe(element));
+	</script>
+</Layout>
