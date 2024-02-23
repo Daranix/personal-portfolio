@@ -62,7 +62,7 @@ async function captchaValidator(responseKey: string) {
     }
 
     // Put secret key here, which we get from google console
-    const secretKey = import.meta.env.CAPTCHA_SECRET_KEY as string;
+    const secretKey = (import.meta.env.CAPTCHA_SECRET_KEY ?? process.env.CAPTCHA_SECRET_KEY) as string;
 
     // Hitting POST request to the URL, Google will
     // respond with success or error scenario.
