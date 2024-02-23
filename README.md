@@ -1,44 +1,21 @@
-# Astro Starter Kit: Basics
+# 📋 My Personal Portfolio 💻
 
-```sh
-npm create astro@latest -- --template basics
-```
+Personal porfolio website using Astro & Vue for the form
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## ❔ FAQ
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Why did you use Astro for create it?
 
-![just-the-basics](https://github.com/withastro/astro//2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+Because It is a simple framework that allows SSG and SSR. In addition, when I started the portfolio I was not sure if I would use Vue or React for the contact form, Astro gave me the flexibility to use whichever one I wanted when the time came.
 
-## 🚀 Project Structure
+- You're talking about SSG but now all the content is SSR ... 
 
-Inside of your Astro project, you'll see the following folders and files:
+That's totally true, but the reason is that I haven't figured out (yet) how to handle translations to be SSG. Previously, for a web version of my CV I used a library but I was not happy with it. With Astro 4 they supposedly introduced tooling for i18n and I was hoping the framework would have some way to do the SSG pages on build, but after reading the documentation it seems like you either do the page 2 times in the respective languages. If you want the page to be static, for now the server processes everything to translate, it is not a big problem because the content does not change too much and can be easily fixed by adding a caching system
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -49,6 +26,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
