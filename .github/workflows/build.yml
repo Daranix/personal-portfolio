@@ -21,26 +21,7 @@ env:
 
 
 jobs:
-
-  'build-app':
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Application
-        run: npm run build
-
-  'build-docker-and-upload':
+  'build-and-upload':
 
     runs-on: ubuntu-latest
     permissions:
@@ -51,8 +32,20 @@ jobs:
       id-token: write
 
     steps:
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Application
+        run: npm run build
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
