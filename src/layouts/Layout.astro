@@ -18,11 +18,7 @@ const theme = Astro.cookies.get("theme")?.value;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta charset="utf-8" />
-		<link
-			rel="preload"
-			as="script"
-			href="https://analytics.mpesteban.dev/js/script.js"
-		/><meta
+		<meta
 			name="description"
 			content="Bienvenido al portfolio personal de Esteban Mayoral"
 		/><link rel="author" href="https://mpesteban.dev" /><meta
@@ -59,5 +55,6 @@ const theme = Astro.cookies.get("theme")?.value;
 	</head>
 	<body class="bg-gray-100 dark:bg-slate-950">
 		<slot />
+		<script src="https://analytics.mpesteban.dev/js/script.js" data-domain="mpesteban.dev" defer></script>
 	</body>
 </html>
