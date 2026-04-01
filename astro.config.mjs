@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from "@astrojs/node";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 
 import vue from "@astrojs/vue";
@@ -19,9 +19,12 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
-  integrations: [tailwind(), icon({
+  integrations: [icon({
     include: {
       mdi: ['*']
     }
-  }), vue()]
+  }), vue()],
+  vite: {
+    plugins: [tailwindcss()],
+  }
 });
