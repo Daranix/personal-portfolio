@@ -29,18 +29,18 @@ const techList = [
   </div>
   <div class="h-40">
     <div
-      class="w-full h-full relative inline-flex flex-nowrap bg-white dark:bg-gray-800 rounded-3xl items-center justify-between px-10 overflow-hidden"
+      class="w-full h-full relative inline-flex flex-nowrap bg-card border border-border shadow-sm rounded-3xl items-center justify-between px-10 overflow-hidden transition-all hover:shadow-md"
     >
       <div
-        class="absolute left-0 w-28 h-full bg-gradient-to-r from-white to-transparent dark:from-gray-800 dark:to-transparent z-[1]"
+        class="absolute left-0 w-28 h-full bg-linear-to-r from-card to-transparent z-1"
       >
       </div>
       <div
-        class="absolute right-0 w-28 h-full bg-gradient-to-l from-white to-transparent dark:from-gray-800 dark:to-transparent z-[1]"
+        class="absolute right-0 w-28 h-full bg-linear-to-l from-card to-transparent z-1"
       >
       </div>
       <div
-        class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+        class="w-full inline-flex flex-nowrap overflow-hidden mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-200px),transparent_100%)]"
       >
         <ul
           class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
@@ -50,7 +50,7 @@ const techList = [
               return (
                 <li class="mx-8">
                   <img
-                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 undefined"
+                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 transition-transform duration-300 hover:scale-110 cursor-pointer"
                     src={t.image}
                     alt={t.title}
                     title={t.title}
@@ -68,7 +68,7 @@ const techList = [
               return (
                 <li class="mx-8">
                   <img
-                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 undefined"
+                    class="w-14 h-14 grayscale object-fill hover:grayscale-0 transition-transform duration-300 hover:scale-110 cursor-pointer"
                     src={t.image}
                     alt={t.title}
                     title={t.title}

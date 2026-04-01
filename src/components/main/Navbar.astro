@@ -73,15 +73,15 @@ const languageOptions = languages.map((v) => ({
 </script>
 
 <header
-    class="w-full h-[5rem] flex justify-center dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 sticky top-0 left-0 z-10 backdrop-blur-lg subpixel-antialiased"
+    class="w-full h-[5rem] flex justify-center bg-background/70 sticky top-0 left-0 z-50 backdrop-blur-lg subpixel-antialiased"
 >
     <nav
         class="w-full h-full flex items-center justify-between py-1 px-5 max-w-5xl xl:max-w-7xl"
     >
         <div
-            class="w-7 h-7 bg-dusky flex items-center justify-center p-4 rounded-sm dark:bg-gray-600 dark:opacity-75 bg-black text-white font-semibold"
+            class="w-7 h-7 flex items-center justify-center p-4 rounded-sm bg-primary text-primary-foreground font-semibold"
         >
-            <span class="text-md font-semibold dark:text-dusky"
+            <span class="text-md font-semibold"
                 >E<span class="text-yellow-400">M</span></span
             >
         </div>
@@ -99,7 +99,7 @@ const languageOptions = languages.map((v) => ({
                 />
             </div>
 
-            <button title="Switch to dark theme" id="toggleThemeBtn">
+            <button title="Toggle theme" id="toggleThemeBtn">
                 <Icon
                     name="moon"
                     class="w-6 h-6 fill-current text-sun-beam active:rotate-[360deg] transition-all duration-300 inline-block dark:hidden"

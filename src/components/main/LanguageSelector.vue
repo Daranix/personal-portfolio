@@ -84,7 +84,7 @@ onUnmounted(() => {
           <span class="sr-only">Toggle language menu</span>
         </button>
       </DrawerTrigger>
-      <DrawerContent class="z-50 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+      <DrawerContent class="z-50 border-t border-border bg-background">
         <DrawerHeader class="text-left pb-2">
           <DrawerTitle class="text-lg font-bold">Select Language</DrawerTitle>
         </DrawerHeader>
@@ -94,7 +94,7 @@ onUnmounted(() => {
             :key="lang.code" 
             :href="lang.url"
             class="flex items-center justify-between p-4 rounded-xl text-lg font-semibold transition-colors duration-200"
-            :class="currentLang === lang.code ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-white' : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-foreground'"
+            :class="currentLang === lang.code ? 'bg-primary/10 text-primary dark:text-white' : 'bg-secondary hover:opacity-80 text-foreground'"
           >
             {{ lang.label }}
             <Check v-if="currentLang === lang.code" class="w-5 h-5 text-primary" />

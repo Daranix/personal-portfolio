@@ -53,7 +53,7 @@ const theme = Astro.cookies.get("theme")?.value;
 		/>
 		<title>{title}</title>
 	</head>
-	<body class="bg-gray-100 dark:bg-slate-950">
+	<body>
 		<slot />
 		<script src="https://analytics.mpesteban.dev/js/script.js" data-domain="mpesteban.dev" defer></script>
 	</body>
